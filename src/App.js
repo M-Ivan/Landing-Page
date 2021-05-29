@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  CssBaseline,
+  Grid,
+  makeStyles,
+  Typography,
+  withStyles,
+} from "@material-ui/core";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Header from "./components/Header";
+import NavBar from "./components/NavBar";
+import Portfolio from "./components/Portfolio";
 
+export const CustomTypography = withStyles((theme) => ({
+  root: {
+    height: 25,
+    fontFamily: "Raleway",
+  },
+}))(Typography);
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: "100vh",
+    backgroundColor: "#1b1b1b",
+    backgroundAttachment: "relative",
+    display: "flex",
+    fontFamily: "Raleway",
+    overflowX: "hidden",
+  },
+}));
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid container className={classes.root}>
+      <NavBar />
+      <Header />
+      <About />
+      <Portfolio />
+      <Contact />
+      <CssBaseline />
+    </Grid>
   );
 }
 
