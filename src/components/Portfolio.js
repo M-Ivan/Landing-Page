@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   back: {
     boxShadow: theme.shadows[10],
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       height: "100%",
       marginLeft: "0rem",
       width: "80px",
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     left: "0%",
     color: "#011b58",
     zIndex: 10,
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("lg")]: {
       top: "250%",
 
       "&:hover": {
@@ -70,10 +70,9 @@ const useStyles = makeStyles((theme) => ({
   },
   forward: {
     boxShadow: theme.shadows[10],
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       height: "100%",
       top: "200%",
-
       marginRight: "0rem",
       width: "80px",
       boxShadow: "0 0",
@@ -92,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     right: "0%",
     color: "#011b58",
     zIndex: 10,
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("lg")]: {
       top: "250%",
 
       "&:hover": {
@@ -103,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
   },
   backB: {
     boxShadow: theme.shadows[10],
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       height: "100%",
       marginLeft: "0rem",
       width: "80px",
@@ -216,7 +215,8 @@ function Portfolio(props) {
   const [selected, setSelected] = useState(1);
 
   // checker de width
-  const mobile = width === "xs" || width === "sm" ? true : false;
+  const mobile =
+    width === "xs" || width === "sm" || width === "md" ? true : false;
 
   const openCloseModal = () => {
     setShowDetails(!showDetails);
@@ -280,7 +280,7 @@ function Portfolio(props) {
         <ArrowForwardIosIcon />
       </IconButton>
       <Hidden mdDown>
-        <Grid item xs={12} md={6} lg={4} className={classes.project}>
+        <Grid item lg={4} className={classes.project}>
           <CardActionArea onClick={handleBack} style={{ height: "100%" }}>
             <CardMedia
               // Poner una imagen que respete las dimensiones siempre
@@ -293,7 +293,7 @@ function Portfolio(props) {
           </CardActionArea>
         </Grid>
       </Hidden>{" "}
-      <Grid item xs={12} md={12} lg={4} className={classes.project}>
+      <Grid item xs={12} lg={4} className={classes.project}>
         <CardActionArea
           onClick={() => setShowDetails(true)}
           style={{ height: "100%" }}
@@ -339,7 +339,7 @@ function Portfolio(props) {
         </CardActionArea>
       </Grid>
       <Hidden mdDown>
-        <Grid item xs={12} md={6} lg={4} className={classes.project}>
+        <Grid item lg={4} className={classes.project}>
           <CardActionArea onClick={handleForward} style={{ height: "100%" }}>
             <CardMedia
               component="img"
