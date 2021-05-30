@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   map: {
     display: "flex",
-    height: "100%",
+    height: "100vh",
   },
   location: {
     position: "relative",
