@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     top: "0.5rem",
     backgroundColor: "#00000000",
     height: "60px",
-    zIndex: 10,
+    zIndex: 11,
   },
   toolbar: {
     justifyContent: "space-between",
@@ -115,7 +115,7 @@ export default function NavBar(props) {
               </MenuItem>
             ))}
           </Menu>
-          <Typography className={classes.banner}>AIRhitect</Typography>
+          <img src="/assets/logo.png" alt="logo" />
           <Button className={classes.button}>
             {" "}
             <RoomIcon className={classes.icon} />

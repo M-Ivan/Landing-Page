@@ -18,7 +18,7 @@ import {
   Grow,
 } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CustomTypography } from "../App";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";

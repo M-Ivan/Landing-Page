@@ -3,3 +3,10 @@
   color2: #ff0c5c;
   color3: #ffffff;
 }
+
+a {
+  color: #011b58;
+}
+a:hover {
+  color: #ff0c5c;
+}
