@@ -13,7 +13,6 @@ import Portfolio from "./components/Portfolio";
 
 export const CustomTypography = withStyles((theme) => ({
   root: {
-    height: 25,
     fontFamily: "Raleway",
   },
 }))(Typography);
