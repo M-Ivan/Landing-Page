@@ -57,3 +57,7 @@ a:hover {
 #radio3:checked ~ .auto-nav .auto-btn3 {
   background-color: #0133a8;
 }
+
+#radio3:checked ~ .auto-nav .auto-btn4 {
+  background-color: #0133a8;
+}
