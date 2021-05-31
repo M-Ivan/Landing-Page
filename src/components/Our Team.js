@@ -1,7 +1,7 @@
 import { Avatar, Grid, makeStyles } from "@material-ui/core";
 import React from "react";
 import { CustomTypography } from "../App";
-import { crew } from "../data/Crew";
+import { team } from "../data/team";
 const useStyles = makeStyles((theme) => ({
   root: {
     color: "#011b58",
@@ -34,7 +34,7 @@ export default function OurTeam(props) {
   const classes = useStyles();
   return (
     <Grid container className={classes.root} ref={teamSection}>
-      {crew.map((member) => (
+      {team.map((member) => (
         <Grid item xs={12} lg={2} key={member.name}>
           <Grid
             container

@@ -1,4 +1,4 @@
-export const SliderData = [
+export const projects = [
   {
     name: "Proyecto 1",
     subtitle: "Este el primer proyecto",

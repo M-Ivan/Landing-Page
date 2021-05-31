@@ -1,4 +1,4 @@
-export const crew = [
+export const team = [
   {
     name: "Colleague Name A",
     job: "CEO",

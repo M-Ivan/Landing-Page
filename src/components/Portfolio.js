@@ -18,7 +18,7 @@ import { useState } from "react";
 import { CustomTypography } from "../App";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import { SliderData } from "../data/SliderData";
+import { projects } from "../data/projects";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -196,7 +196,7 @@ function Portfolio(props) {
           <CardMedia
             component="div"
             alt="Project 2"
-            image={SliderData[selected].image}
+            image={projects[selected].image}
             title="Project 2"
             className={classes.img}
           >
@@ -222,11 +222,11 @@ function Portfolio(props) {
             gutterBottom
             style={{ fontWeight: 600 }}
           >
-            {SliderData[selected].name}
+            {projects[selected].name}
           </CustomTypography>
           <Divider />
           <CustomTypography variant="body1">
-            {SliderData[selected].description}
+            {projects[selected].description}
           </CustomTypography>
         </Grid>
       </Grid>
@@ -241,7 +241,7 @@ function Portfolio(props) {
             <CardMedia
               component="div"
               alt="Project 1"
-              image={SliderData[selected > 0 ? selected - 1 : 3].image}
+              image={projects[selected > 0 ? selected - 1 : 3].image}
               title="Project 1"
               className={classes.img}
               style={{ transition: "1s" }}
@@ -264,7 +264,7 @@ function Portfolio(props) {
           <CardMedia
             component="div"
             alt="Project 2"
-            image={SliderData[selected].image}
+            image={projects[selected].image}
             title="Project 2"
             className={classes.main}
             style={{ height: hover || mobile ? "80%" : "100%" }}
@@ -296,10 +296,10 @@ function Portfolio(props) {
                   gutterBottom
                   style={{ fontWeight: 600 }}
                 >
-                  {SliderData[selected].name}
+                  {projects[selected].name}
                 </CustomTypography>
                 <CustomTypography variant="h6">
-                  {SliderData[selected].subtitle}
+                  {projects[selected].subtitle}
                 </CustomTypography>
               </CardContent>
             </Slide>
@@ -313,7 +313,7 @@ function Portfolio(props) {
               component="div"
               alt="Project 3"
               height="100%"
-              image={SliderData[selected < 3 ? selected + 1 : 0].image}
+              image={projects[selected < 3 ? selected + 1 : 0].image}
               title="Project 3"
               className={classes.img}
             >
