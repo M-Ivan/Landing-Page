@@ -3,10 +3,10 @@
 Proyecto de una landing page responsive siguiendo el siguiente modelo.
 
 Para dispositivos de pantalla pequeña:
-[Movil](/public/template/mobile4.jpg)
+[Movil](/template/mobile4.jpg)
 
 Diseño de escritorio:
-[Desk](/public/template/desk4.jpg)
+[Desk](/template/desk4.jpg)
 
 ## Demo Online
 
