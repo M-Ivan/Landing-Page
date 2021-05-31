@@ -12,6 +12,13 @@ Diseño de escritorio:
 
 - :rocket: Heroku: https://landingtestdev.herokuapp.com/
 
+# Frameworks / librerías
+
+- React
+- Material UI core
+- Material UI Icons
+- JSS / CSS
+
 ### Como correr
 
 En root folder:
