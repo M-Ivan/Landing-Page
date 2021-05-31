@@ -207,7 +207,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Portfolio(props) {
-  const { width } = props;
+  const { width, folioSection } = props;
   const classes = useStyles();
 
   const [showDetails, setShowDetails] = useState(false);
@@ -271,7 +271,7 @@ function Portfolio(props) {
   );
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container className={classes.root} ref={folioSection}>
       {" "}
       <IconButton onClick={handleBack} className={classes.back}>
         <ArrowBackIosIcon />

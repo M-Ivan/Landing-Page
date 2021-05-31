@@ -1,20 +1,32 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
   AppBar,
   Button,
   Grid,
   Hidden,
-  Icon,
-  IconButton,
   makeStyles,
-  Slide,
   Menu,
   MenuItem,
   Toolbar,
   Typography,
+  withWidth,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  SwipeableDrawer,
+  Slide,
+  Grow,
 } from "@material-ui/core";
 import SortIcon from "@material-ui/icons/Sort";
 import RoomIcon from "@material-ui/icons/Room";
+import {
+  HomeOutlined,
+  InfoOutlined,
+  LocationOnOutlined,
+  WorkOffOutlined,
+} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,9 +56,22 @@ const useStyles = makeStyles((theme) => ({
       color: "#fff",
     },
   },
-  banner: {
-    color: "#ff0c5c",
-    fontWeight: 600,
+  brand: {
+    justifyContent: "center",
+    height: "40px",
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "40%",
+    },
+  },
+  logo: {
+    width: "auto",
+    height: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   nav: {
     backgroundColor: "#fff",
@@ -54,80 +79,206 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     padding: "0.3rem 1rem",
     boxShadow: "0 0 10px #00000060",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "4vw",
+    },
   },
   icon: {
     marginRight: "1rem",
   },
-  menu: {
-    //  flexGrow: 1,
+  side: {
+    backgroundColor: "#fff",
+    boxShadow: "0 0 5px #000",
+    borderRadius: "0%",
+  },
+  drawer: {
+    color: "#011b58",
+  },
+  list: {
+    width: 250,
   },
 }));
 
-const options = ["Menu", "Home", "About", "Projects", "Contact"];
-
-export default function NavBar(props) {
-  const [menuOpen, setmMenuOpen] = useState(null);
+function NavBar(props) {
+  const {
+    gotoHeader,
+    gotoAbout,
+    gotoFolio,
+    gotoContact,
+    width,
+    header,
+    about,
+    contact,
+    folio,
+  } = props;
+  const [menuOpen, setMenuOpen] = useState(null);
+  const [sideOpen, setSideOpen] = useState(false);
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [current, setCurrent] = useState("Header");
+  const mobile = width === "sm" || width === "xs" ? true : false;
+
+  function updatePosition() {
+    if (folio.current && about.current && header.current && contact.current) {
+      if (about && window.pageYOffset < about.current.offsetTop) {
+        setCurrent("Header");
+      }
+      if (
+        window.pageYOffset <= folio.current.offsetTop &&
+        window.pageYOffset > about.current.offsetTop * 0.9
+      ) {
+        setCurrent("About");
+      }
+      if (
+        window.pageYOffset <= contact.current.offsetTop &&
+        window.pageYOffset > folio.current.offsetTop * 0.9
+      ) {
+        setCurrent("Projects");
+      }
+      if (contact && window.pageYOffset > contact.current.offsetTop * 0.9) {
+        setCurrent("Find Us");
+      }
+    }
+  }
+
+  useLayoutEffect(() => {
+    window.addEventListener("scroll", updatePosition);
+    updatePosition();
+  }, []);
 
   const handleClick = (e) => {
-    setmMenuOpen(e.currentTarget);
+    setMenuOpen(e.currentTarget);
   };
 
   const handleClose = (e) => {
-    setmMenuOpen(null);
+    setMenuOpen(null);
   };
 
-  const handleMenuItemClick = (event, index) => {
-    setSelectedIndex(index);
-    setmMenuOpen(null);
+  const handleGotoHeader = () => {
+    setMenuOpen(null);
+    gotoHeader();
   };
+  const handleGotoAbout = () => {
+    setMenuOpen(null);
+    gotoAbout();
+  };
+  const handleGotoFolio = () => {
+    setMenuOpen(null);
+    gotoFolio();
+  };
+  const handleGotoContact = () => {
+    setMenuOpen(null);
+    gotoContact();
+  };
+
+  const list = () => (
+    <div onClick={handleGotoHeader} className={classes.list}>
+      <Button className={classes.brand}>
+        <img src="/assets/logo.png" alt="logo" />
+      </Button>
+      <Divider />
+      <List>
+        <ListItem button onClick={handleGotoHeader}>
+          <ListItemIcon>
+            <HomeOutlined />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem button onClick={handleGotoAbout}>
+          <ListItemIcon>
+            <InfoOutlined />
+          </ListItemIcon>
+          <ListItemText primary="About Us" />
+        </ListItem>
+        <ListItem button onClick={handleGotoFolio}>
+          <ListItemIcon>
+            <WorkOffOutlined />
+          </ListItemIcon>
+          <ListItemText primary="Projects" />
+        </ListItem>
+        <ListItem button onClick={handleGotoContact}>
+          <ListItemIcon>
+            <LocationOnOutlined />
+          </ListItemIcon>
+          <ListItemText primary="Find Us" />
+        </ListItem>
+      </List>
+    </div>
+  );
 
   return (
     <Grid container className={classes.root}>
       <AppBar className={classes.appbar} elevation={0}>
         <Toolbar className={classes.toolbar}>
-          <Button
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
-            className={classes.button}
-          >
-            {console.log("anchor", menuOpen)}
-            <SortIcon className={classes.icon} />
-            menu
-          </Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={menuOpen}
-            keepMounted
-            open={Boolean(menuOpen)}
-            onClose={handleClose}
-          >
-            {options.map((option, index) => (
-              <MenuItem
-                key={option}
-                disabled={index === 0}
-                selected={index === selectedIndex}
-                onClick={(event) => handleMenuItemClick(event, index)}
+          {mobile ? (
+            <div>
+              <Button
+                className={classes.button}
+                onClick={() => setSideOpen(!sideOpen)}
               >
-                {option}
-              </MenuItem>
-            ))}
-          </Menu>
-          <img src="/assets/logo.png" alt="logo" />
-          <Button className={classes.button}>
-            {" "}
-            <RoomIcon className={classes.icon} />
-            Contacto
+                <SortIcon />
+              </Button>
+              <SwipeableDrawer
+                className={classes.drawer}
+                anchor="left"
+                open={sideOpen}
+                onOpen={() => setSideOpen(true)}
+                onClose={() => setSideOpen(false)}
+              >
+                {list()}
+              </SwipeableDrawer>
+            </div>
+          ) : (
+            <div>
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+                className={classes.button}
+              >
+                <SortIcon className={classes.icon} />
+                menu
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={menuOpen}
+                keepMounted
+                value={current}
+                open={Boolean(menuOpen)}
+                onClose={handleClose}
+              >
+                <MenuItem value="Header" onClick={handleGotoHeader}>
+                  Header
+                </MenuItem>{" "}
+                <MenuItem value="About" onClick={handleGotoAbout}>
+                  About us
+                </MenuItem>{" "}
+                <MenuItem value="Projects" onClick={handleGotoFolio}>
+                  Projects
+                </MenuItem>{" "}
+                <MenuItem value="Contact" onClick={handleGotoContact}>
+                  Find Us
+                </MenuItem>
+              </Menu>
+            </div>
+          )}
+          <Button className={classes.brand} onClick={handleGotoHeader}>
+            <img className={classes.logo} src="/assets/logo.png" alt="logo" />
           </Button>
+          <Hidden mdDown>
+            <Button onClick={gotoContact} className={classes.button}>
+              {" "}
+              <RoomIcon className={classes.icon} />
+              Contacto
+            </Button>
+          </Hidden>
         </Toolbar>
         <Toolbar>
           <Typography variant="h4" className={classes.nav}>
-            {options[selectedIndex]}
+            {current}
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar>{" "}
     </Grid>
   );
 }
+export default withWidth()(NavBar);

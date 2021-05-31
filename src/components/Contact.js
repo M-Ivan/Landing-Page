@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   textField: {
-    width: "50%",
+    width: "45%",
     [theme.breakpoints.down("md")]: {
       width: "100%",
       marginTop: "1rem",
@@ -117,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Contact(props) {
+  const { contactSection } = props;
   const classes = useStyles();
 
   const [name, setName] = useState();
@@ -125,7 +126,7 @@ function Contact(props) {
   const [message, setMessage] = useState();
 
   return (
-    <Grid container className={classes.root}>
+    <Grid container className={classes.root} ref={contactSection}>
       <Grid item xs={12} lg={7}>
         <Grid container className={classes.contact}>
           <Grid item xs={12} lg={6} className={classes.col1}>
