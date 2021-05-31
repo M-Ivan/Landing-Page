@@ -6,7 +6,7 @@ Para dispositivos de pantalla pequeña:
 [Movil](/public/template/mobile4.jpg)
 
 Diseño de escritorio:
-[Desk](/public/template/desk4)
+[Desk](/public/template/desk4.jpg)
 
 ## Demo Online
 
