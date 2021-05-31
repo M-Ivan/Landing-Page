@@ -25,6 +25,7 @@ import {
   HomeOutlined,
   InfoOutlined,
   LocationOnOutlined,
+  PeopleOutline,
   WorkOffOutlined,
 } from "@material-ui/icons";
 
@@ -104,12 +105,14 @@ function NavBar(props) {
     gotoHeader,
     gotoAbout,
     gotoFolio,
+    gotoTeam,
     gotoContact,
     width,
     header,
     about,
-    contact,
     folio,
+    team,
+    contact,
   } = props;
   const [menuOpen, setMenuOpen] = useState(null);
   const [sideOpen, setSideOpen] = useState(false);
@@ -129,10 +132,16 @@ function NavBar(props) {
         setCurrent("About");
       }
       if (
-        window.pageYOffset <= contact.current.offsetTop &&
+        window.pageYOffset <= team.current.offsetTop &&
         window.pageYOffset > folio.current.offsetTop * 0.9
       ) {
         setCurrent("Projects");
+      }
+      if (
+        window.pageYOffset <= contact.current.offsetTop &&
+        window.pageYOffset > team.current.offsetTop * 0.9
+      ) {
+        setCurrent("Our Team");
       }
       if (contact && window.pageYOffset > contact.current.offsetTop * 0.9) {
         setCurrent("Find Us");
@@ -165,6 +174,10 @@ function NavBar(props) {
     setMenuOpen(null);
     gotoFolio();
   };
+  const handleGotoTeam = () => {
+    setMenuOpen(null);
+    gotoTeam();
+  };
   const handleGotoContact = () => {
     setMenuOpen(null);
     gotoContact();
@@ -194,6 +207,12 @@ function NavBar(props) {
             <WorkOffOutlined />
           </ListItemIcon>
           <ListItemText primary="Projects" />
+        </ListItem>
+        <ListItem button onClick={handleGotoTeam}>
+          <ListItemIcon>
+            <PeopleOutline />
+          </ListItemIcon>
+          <ListItemText primary="Our Team" />
         </ListItem>
         <ListItem button onClick={handleGotoContact}>
           <ListItemIcon>
@@ -254,6 +273,9 @@ function NavBar(props) {
                 </MenuItem>{" "}
                 <MenuItem value="Projects" onClick={handleGotoFolio}>
                   Projects
+                </MenuItem>{" "}
+                <MenuItem value="Our Team" onClick={handleGotoTeam}>
+                  Our Team
                 </MenuItem>{" "}
                 <MenuItem value="Contact" onClick={handleGotoContact}>
                   Find Us

@@ -10,6 +10,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+import OurTeam from "./components/Our Team";
 import Portfolio from "./components/Portfolio";
 
 export const CustomTypography = withStyles((theme) => ({
@@ -34,15 +35,28 @@ function App() {
   const header = useRef(null);
   const about = useRef(null);
   const folio = useRef(null);
+  const team = useRef(null);
   const contact = useRef(null);
 
+  console.log("header", header);
+  console.log("about", about);
+  console.log("folio", folio);
+  console.log("team", folio);
+  console.log("contact", contact);
+
   useEffect(() => {
-    if (folio.current && header.current && contact.current && about.current) {
+    if (
+      folio.current &&
+      header.current &&
+      contact.current &&
+      about.current &&
+      team.current
+    ) {
       console.log("ref", true);
     } else {
       console.log("ref", false);
     }
-  }, [header, about, folio, contact]);
+  }, [header, about, folio, contact, team]);
 
   const gotoHeader = () =>
     window.scrollTo({ top: header.current.offsetTop, behavior: "smooth" });
@@ -54,6 +68,11 @@ function App() {
   const gotoFolio = () =>
     window.scrollTo({
       top: folio.current.offsetTop,
+      behavior: "smooth",
+    });
+  const gotoTeam = () =>
+    window.scrollTo({
+      top: team.current.offsetTop,
       behavior: "smooth",
     });
   const gotoContact = () =>
@@ -68,15 +87,18 @@ function App() {
         gotoHeader={gotoHeader}
         gotoAbout={gotoAbout}
         gotoFolio={gotoFolio}
+        gotoTeam={gotoTeam}
         gotoContact={gotoContact}
         header={header}
         about={about}
         folio={folio}
         contact={contact}
+        team={team}
       />
       <Header headerSection={header} />
       <About aboutSection={about} />
       <Portfolio folioSection={folio} />
+      <OurTeam teamSection={team} />
       <Contact contactSection={contact} />
       <CssBaseline />
     </Grid>

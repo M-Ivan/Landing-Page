@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import { CustomTypography } from "../App";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import { SliderData } from "./SliderData";
+import { SliderData } from "../data/SliderData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
