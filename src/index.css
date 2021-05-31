@@ -11,3 +11,49 @@ a {
 a:hover {
   color: #ff0c5c;
 }
+
+/* Header slider CSS */
+
+#radio1:checked ~ .first {
+  margin-left: 0;
+}
+#radio2:checked ~ .first {
+  margin-left: -20%;
+}
+#radio3:checked ~ .first {
+  margin-left: -40%;
+}
+#radio4:checked ~ .first {
+  margin-left: -60%;
+}
+
+.auto-nav {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  bottom: 10%;
+}
+
+.auto-nav div {
+  border: 2px solid #0133a8;
+  padding: 5px;
+  border-radius: 10px;
+  transition: 1s;
+}
+
+.auto-nav div:not(:last-child) {
+  margin-right: 40px;
+}
+
+#radio1:checked ~ .auto-nav .auto-btn1 {
+  background-color: #0133a8;
+}
+
+#radio2:checked ~ .auto-nav .auto-btn2 {
+  background-color: #0133a8;
+}
+
+#radio3:checked ~ .auto-nav .auto-btn3 {
+  background-color: #0133a8;
+}

@@ -5,7 +5,7 @@ import { crew } from "../data/Crew";
 const useStyles = makeStyles((theme) => ({
   root: {
     color: "#011b58",
-    padding: "2rem",
+    padding: "1rem",
     minHeight: "100vh",
     backgroundColor: "#fff",
     alignItems: "center",
@@ -15,6 +15,10 @@ const useStyles = makeStyles((theme) => ({
     width: "120px",
     height: "120px",
     marginBottom: "2rem",
+  },
+  format: {
+    textAlign: "center",
+    padding: "3rem 0 3rem 0",
   },
   name: {
     color: "#ff0c5c",
@@ -32,7 +36,12 @@ export default function OurTeam(props) {
     <Grid container className={classes.root} ref={teamSection}>
       {crew.map((member) => (
         <Grid item xs={12} lg={2} key={member.name}>
-          <Grid container direction="column" alignItems="center">
+          <Grid
+            container
+            direction="column"
+            alignItems="center"
+            className={classes.format}
+          >
             <Avatar
               src={member.profile}
               alt="Colleage name"

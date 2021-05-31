@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "transparent",
     },
     [theme.breakpoints.down("xs")]: {
-      width: "40%",
+      width: "50%",
     },
   },
   logo: {
@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
   },
+
   nav: {
     backgroundColor: "#fff",
     color: "#011b58",
@@ -186,8 +187,9 @@ function NavBar(props) {
   const list = () => (
     <div onClick={handleGotoHeader} className={classes.list}>
       <Button className={classes.brand}>
-        <img src="/assets/logo.png" alt="logo" />
+        <img className={classes.logo} src="/assets/logo.png" alt="logo" />
       </Button>
+
       <Divider />
       <List>
         <ListItem button onClick={handleGotoHeader}>

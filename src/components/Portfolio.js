@@ -10,11 +10,7 @@ import {
   makeStyles,
   Modal,
   Slide,
-  useTheme,
-  Zoom,
   withWidth,
-  Collapse,
-  Fade,
   Grow,
 } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
@@ -31,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
   card: {
     height: "100%",
     width: "100%",
-    transition: "0.6s",
+    transition: "1s",
   },
   mainImg: {
-    transition: "0.6s",
+    transition: "1s",
   },
   back: {
     boxShadow: theme.shadows[10],
@@ -235,7 +231,7 @@ function Portfolio(props) {
     }
   };
 
-  const modalBody = (
+  const body = (
     <Grow in={showDetails} {...{ timeout: 400 }}>
       <Grid container justify="center" className={classes.modal}>
         <IconButton className={classes.close} onClick={openCloseModal}>
@@ -280,7 +276,7 @@ function Portfolio(props) {
         <ArrowForwardIosIcon />
       </IconButton>
       <Hidden mdDown>
-        <Grid item lg={4} className={classes.project}>
+        <Grid item lg={4}>
           <CardActionArea onClick={handleBack} style={{ height: "100%" }}>
             <CardMedia
               // Poner una imagen que respete las dimensiones siempre
@@ -293,7 +289,7 @@ function Portfolio(props) {
           </CardActionArea>
         </Grid>
       </Hidden>{" "}
-      <Grid item xs={12} lg={4} className={classes.project}>
+      <Grid item xs={12} lg={4}>
         <CardActionArea
           onClick={() => setShowDetails(true)}
           style={{ height: "100%" }}
@@ -327,7 +323,7 @@ function Portfolio(props) {
                     {SliderData[selected].name}
                   </CustomTypography>
                   <h2 className={classes.projectSubtitle}>
-                    {SliderData[selected].subtitle}{" "}
+                    {SliderData[selected].subtitle}
                   </h2>
                 </CardContent>
               </Slide>
@@ -339,7 +335,7 @@ function Portfolio(props) {
         </CardActionArea>
       </Grid>
       <Hidden mdDown>
-        <Grid item lg={4} className={classes.project}>
+        <Grid item lg={4} className="project">
           <CardActionArea onClick={handleForward} style={{ height: "100%" }}>
             <CardMedia
               component="img"
@@ -358,7 +354,7 @@ function Portfolio(props) {
           style={{ backgroundColor: "#011b5860" }}
           closeAfterTransition
         >
-          {modalBody}
+          {body}
         </Modal>
       </div>
     </Grid>
