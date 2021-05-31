@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
   },
   mainText: {
     lineHeight: 2,
-
     [theme.breakpoints.down("sm")]: {
       lineHeight: 1.1,
     },
@@ -36,12 +35,6 @@ const useStyles = makeStyles((theme) => ({
       borderBottom: "80vh solid magenta",
       content: "",
     },
-  },
-  details: {
-    backgroundColor: "#fff",
-  },
-  detailArea: {
-    gridColumnGap: "20px",
   },
 }));
 function About(props) {

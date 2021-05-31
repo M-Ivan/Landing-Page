@@ -1,7 +1,5 @@
-import { Box, Grid, IconButton, makeStyles } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import { CustomTypography } from "../App";
-import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
-import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonChecked";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,23 +54,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#0133a8",
     },
   },
-  //  autoNav: {
-  //    position: "absolute",
-  //    display: "flex",
-  //    width: "800px",
-  //    justifyContent: "center",
-  //    marginTop: "460px",
-  //    "& div": {
-  //      border: "2px solid #0133a8",
-  //      padding: "5px",
-  //      borderRadius: "10px",
-  //      transition: "1s",
-  //    },
-  //    "& div:not(:last-child)": {
-  //      marginRight: "40px",
-  //    },
-  //  },
-
   header: {
     position: "absolute",
     left: "10%",
@@ -86,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "5.8vw",
     },
   },
+  // Texto del header
   text1: {
     backgroundColor: "#011b58",
     position: "absolute",

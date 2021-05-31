@@ -1,9 +1,12 @@
+/* Color picker CSS */
 .color-picker {
   color1: #011b58;
   color2: #ff0c5c;
   color3: #ffffff;
   color4: #b8b8b8;
 }
+
+/* General CSS */
 
 a {
   color: #011b58;
@@ -58,6 +61,6 @@ a:hover {
   background-color: #0133a8;
 }
 
-#radio3:checked ~ .auto-nav .auto-btn4 {
+#radio4:checked ~ .auto-nav .auto-btn4 {
   background-color: #0133a8;
 }

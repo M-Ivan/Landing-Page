@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "100vh",
     backgroundColor: "#d8d8d8",
   },
-  // TODO: Contact items
   contact: {
     padding: "10rem 5rem 5rem 5rem",
     height: "100%",
@@ -76,15 +75,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     height: "100vh",
     position: "relative",
-  },
-  location: {
-    position: "relative",
-    top: "43%",
-    left: "42%",
-    [theme.breakpoints.down("md")]: { left: "45%" },
-    width: "100px",
-    height: "100px",
-    color: "#ff0c5c",
   },
   formControl: {
     display: "grid",

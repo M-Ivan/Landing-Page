@@ -14,7 +14,7 @@ import {
   Grow,
 } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CustomTypography } from "../App";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
@@ -27,17 +27,47 @@ const useStyles = makeStyles((theme) => ({
   card: {
     height: "100%",
     width: "100%",
+    borderBottom: "2px solid #00000040",
+    borderRadius: "0%",
+  },
+  main: {
+    transition: "1s",
+    display: "flex",
+    justifyContent: "center",
+  },
+  img: {
+    height: "100%",
+    minHeight: "50vh",
+    display: "flex",
+    alignItems: "center",
     transition: "1s",
   },
-  mainImg: {
-    transition: "1s",
+  action: {
+    height: "100%",
+    [theme.breakpoints.down("md")]: {
+      width: "70%",
+    },
+  },
+  boxRight: {
+    position: "relative",
+    height: "100%",
+    width: "20%",
+    right: "0%",
+  },
+  boxLeft: {
+    position: "relative",
+    height: "100%",
+    width: "20%",
+    right: "0%",
   },
   back: {
     boxShadow: theme.shadows[10],
     [theme.breakpoints.down("md")]: {
+      color: "#0038bb",
+      top: "0%",
       height: "100%",
       marginLeft: "0rem",
-      width: "80px",
+      width: "100%",
       boxShadow: "0 0",
       backgroundColor: "transparent",
       "&:hover": {
@@ -51,13 +81,11 @@ const useStyles = makeStyles((theme) => ({
     transition: "0.6s",
     width: "40px",
     height: "100px",
-    top: "200%",
+    top: "50%",
     left: "0%",
     color: "#011b58",
     zIndex: 10,
     [theme.breakpoints.up("lg")]: {
-      top: "250%",
-
       "&:hover": {
         backgroundColor: "#011b58",
         color: "#fff",
@@ -67,10 +95,11 @@ const useStyles = makeStyles((theme) => ({
   forward: {
     boxShadow: theme.shadows[10],
     [theme.breakpoints.down("md")]: {
+      color: "#0038bb",
       height: "100%",
-      top: "200%",
+      top: "0%",
       marginRight: "0rem",
-      width: "80px",
+      width: "100%",
       boxShadow: "0 0",
       backgroundColor: "transparent",
       "&:hover": {
@@ -87,76 +116,14 @@ const useStyles = makeStyles((theme) => ({
     right: "0%",
     color: "#011b58",
     zIndex: 10,
+    top: "50%",
     [theme.breakpoints.up("lg")]: {
-      top: "250%",
-
+      position: "absolute",
       "&:hover": {
         backgroundColor: "#011b58",
         color: "#fff",
       },
     },
-  },
-  backB: {
-    boxShadow: theme.shadows[10],
-    [theme.breakpoints.down("md")]: {
-      height: "100%",
-      marginLeft: "0rem",
-      width: "80px",
-      boxShadow: "0 0",
-      backgroundColor: "transparent",
-      "&:hover": {
-        backgroundColor: "transparent",
-      },
-    },
-    backgroundColor: "#fff",
-    marginLeft: "1rem",
-    position: "relative",
-    transition: "0.6s",
-    borderRadius: "0%",
-    width: "40px",
-    height: "100px",
-    color: "#011b58",
-    zIndex: 10,
-    [theme.breakpoints.up("md")]: {
-      "&:hover": {
-        backgroundColor: "#011b58",
-        color: "#fff",
-      },
-    },
-  },
-  forwardB: {
-    boxShadow: theme.shadows[10],
-    [theme.breakpoints.down("sm")]: {
-      height: "100%",
-      marginRight: "0rem",
-      width: "80px",
-      boxShadow: "0 0",
-      backgroundColor: "transparent",
-      "&:hover": {
-        backgroundColor: "transparent",
-      },
-    },
-    backgroundColor: "#fff",
-    marginRight: "1rem",
-    position: "relative",
-    transition: "0.6s",
-    borderRadius: "0%",
-    width: "40px",
-    height: "100px",
-    color: "#011b58",
-    zIndex: 10,
-    [theme.breakpoints.up("md")]: {
-      "&:hover": {
-        backgroundColor: "#011b58",
-        color: "#fff",
-      },
-    },
-  },
-  title: {
-    fontWeight: 600,
-  },
-  projectSubtitle: {
-    fontWeight: 100,
   },
   modal: {
     borderRadius: "1rem",
@@ -176,18 +143,6 @@ const useStyles = makeStyles((theme) => ({
       left: "0%",
     },
   },
-  modalImg: {
-    borderRadius: "1rem",
-    height: "100%",
-    minHeight: "50vh",
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  text: {
-    padding: "3rem",
-  },
   close: {
     position: "absolute",
     top: "5px",
@@ -197,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 100,
   },
   icon: {
-    color: "#000",
+    color: "#b8b8b8",
     width: "40px",
     height: "40px",
   },
@@ -243,18 +198,30 @@ function Portfolio(props) {
             alt="Project 2"
             image={SliderData[selected].image}
             title="Project 2"
-            className={classes.modalImg}
+            className={classes.img}
           >
-            <IconButton onClick={handleBack} className={classes.backB}>
-              <ArrowBackIosIcon />
-            </IconButton>
-            <IconButton onClick={handleForward} className={classes.forwardB}>
-              <ArrowForwardIosIcon />
-            </IconButton>
+            <CardActionArea onClick={handleBack} className={classes.boxLeft}>
+              <IconButton onClick={handleBack} className={classes.back}>
+                <ArrowBackIosIcon />
+              </IconButton>
+            </CardActionArea>
+            <CardActionArea onClick={handleForward}></CardActionArea>
+            <CardActionArea
+              onClick={handleForward}
+              className={classes.boxRight}
+            >
+              <IconButton onClick={handleForward} className={classes.forward}>
+                <ArrowForwardIosIcon />
+              </IconButton>{" "}
+            </CardActionArea>
           </CardMedia>
         </Grid>
-        <Grid item xs={12} md={5} className={classes.text}>
-          <CustomTypography variant="h4" gutterBottom className={classes.title}>
+        <Grid item xs={12} md={5} style={{ padding: "3rem" }}>
+          <CustomTypography
+            variant="h4"
+            gutterBottom
+            style={{ fontWeight: 600 }}
+          >
             {SliderData[selected].name}
           </CustomTypography>
           <Divider />
@@ -268,82 +235,92 @@ function Portfolio(props) {
 
   return (
     <Grid container className={classes.root} ref={folioSection}>
-      {" "}
-      <IconButton onClick={handleBack} className={classes.back}>
-        <ArrowBackIosIcon />
-      </IconButton>
-      <IconButton onClick={handleForward} className={classes.forward}>
-        <ArrowForwardIosIcon />
-      </IconButton>
       <Hidden mdDown>
         <Grid item lg={4}>
           <CardActionArea onClick={handleBack} style={{ height: "100%" }}>
             <CardMedia
-              // Poner una imagen que respete las dimensiones siempre
-              component="img"
+              component="div"
               alt="Project 1"
-              height="100%"
               image={SliderData[selected > 0 ? selected - 1 : 3].image}
               title="Project 1"
-            />
+              className={classes.img}
+              style={{ transition: "1s" }}
+            >
+              {" "}
+              <IconButton onClick={handleBack} className={classes.back}>
+                <ArrowBackIosIcon />
+              </IconButton>{" "}
+            </CardMedia>
           </CardActionArea>
         </Grid>
       </Hidden>{" "}
       <Grid item xs={12} lg={4}>
-        <CardActionArea
-          onClick={() => setShowDetails(true)}
-          style={{ height: "100%" }}
+        <Card
+          elevation={10}
+          className={classes.card}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
         >
-          <Card
-            elevation={10}
-            className={classes.card}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
+          <CardMedia
+            component="div"
+            alt="Project 2"
+            image={SliderData[selected].image}
+            title="Project 2"
+            className={classes.main}
+            style={{ height: hover || mobile ? "80%" : "100%" }}
           >
-            <CardMedia
-              component="img"
-              alt="Project 2"
-              height={hover || mobile ? "80%" : "100%"}
-              image={SliderData[selected].image}
-              title="Project 2"
-              className={classes.mainImg}
-            />
-            {hover || mobile ? (
-              <Slide
-                direction="left"
-                in={hover || mobile}
-                {...{ timeout: 600 }}
-              >
-                <CardContent className={classes.projectBox}>
-                  <CustomTypography
-                    variant="h4"
-                    gutterBottom
-                    className={classes.title}
-                  >
-                    {SliderData[selected].name}
-                  </CustomTypography>
-                  <h2 className={classes.projectSubtitle}>
-                    {SliderData[selected].subtitle}
-                  </h2>
-                </CardContent>
-              </Slide>
+            {mobile ? (
+              <CardActionArea className={classes.boxLeft}>
+                <IconButton onClick={handleBack} className={classes.back}>
+                  <ArrowBackIosIcon />
+                </IconButton>
+              </CardActionArea>
             ) : null}
-            {
-              // Alternativa, hacer un grid container fixed?
-            }
-          </Card>
-        </CardActionArea>
+            <CardActionArea
+              onClick={() => setShowDetails(true)}
+              className={classes.action}
+            ></CardActionArea>
+            {mobile ? (
+              <CardActionArea className={classes.boxRight}>
+                <IconButton onClick={handleForward} className={classes.forward}>
+                  <ArrowForwardIosIcon />
+                </IconButton>{" "}
+              </CardActionArea>
+            ) : null}
+          </CardMedia>
+          {hover || mobile ? (
+            <Slide direction="left" in={hover || mobile} {...{ timeout: 600 }}>
+              <CardContent>
+                <CustomTypography
+                  variant="h4"
+                  gutterBottom
+                  style={{ fontWeight: 600 }}
+                >
+                  {SliderData[selected].name}
+                </CustomTypography>
+                <CustomTypography variant="h6">
+                  {SliderData[selected].subtitle}
+                </CustomTypography>
+              </CardContent>
+            </Slide>
+          ) : null}
+        </Card>
       </Grid>
       <Hidden mdDown>
-        <Grid item lg={4} className="project">
+        <Grid item lg={4}>
           <CardActionArea onClick={handleForward} style={{ height: "100%" }}>
             <CardMedia
-              component="img"
+              component="div"
               alt="Project 3"
               height="100%"
               image={SliderData[selected < 3 ? selected + 1 : 0].image}
               title="Project 3"
-            />
+              className={classes.img}
+            >
+              <IconButton onClick={handleForward} className={classes.forward}>
+                <ArrowForwardIosIcon />
+              </IconButton>{" "}
+            </CardMedia>
           </CardActionArea>
         </Grid>
       </Hidden>{" "}

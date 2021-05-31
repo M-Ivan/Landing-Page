@@ -5,7 +5,7 @@ import {
   Typography,
   withStyles,
 } from "@material-ui/core";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Header from "./components/Header";
@@ -37,26 +37,6 @@ function App() {
   const folio = useRef(null);
   const team = useRef(null);
   const contact = useRef(null);
-
-  console.log("header", header);
-  console.log("about", about);
-  console.log("folio", folio);
-  console.log("team", folio);
-  console.log("contact", contact);
-
-  useEffect(() => {
-    if (
-      folio.current &&
-      header.current &&
-      contact.current &&
-      about.current &&
-      team.current
-    ) {
-      console.log("ref", true);
-    } else {
-      console.log("ref", false);
-    }
-  }, [header, about, folio, contact, team]);
 
   const gotoHeader = () =>
     window.scrollTo({ top: header.current.offsetTop, behavior: "smooth" });

@@ -16,8 +16,6 @@ import {
   ListItemText,
   Divider,
   SwipeableDrawer,
-  Slide,
-  Grow,
 } from "@material-ui/core";
 import SortIcon from "@material-ui/icons/Sort";
 import RoomIcon from "@material-ui/icons/Room";
@@ -33,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     alignItems: "center",
   },
-  // Fix: ZINDEX?
   appbar: {
     position: "fixed",
     top: "0.5rem",
@@ -74,7 +71,6 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
   },
-
   nav: {
     backgroundColor: "#fff",
     color: "#011b58",
@@ -121,39 +117,38 @@ function NavBar(props) {
   const [current, setCurrent] = useState("Header");
   const mobile = width === "sm" || width === "xs" ? true : false;
 
-  function updatePosition() {
-    if (folio.current && about.current && header.current && contact.current) {
-      if (about && window.pageYOffset < about.current.offsetTop) {
-        setCurrent("Header");
-      }
-      if (
-        window.pageYOffset <= folio.current.offsetTop &&
-        window.pageYOffset > about.current.offsetTop * 0.9
-      ) {
-        setCurrent("About");
-      }
-      if (
-        window.pageYOffset <= team.current.offsetTop &&
-        window.pageYOffset > folio.current.offsetTop * 0.9
-      ) {
-        setCurrent("Projects");
-      }
-      if (
-        window.pageYOffset <= contact.current.offsetTop &&
-        window.pageYOffset > team.current.offsetTop * 0.9
-      ) {
-        setCurrent("Our Team");
-      }
-      if (contact && window.pageYOffset > contact.current.offsetTop * 0.9) {
-        setCurrent("Find Us");
+  useLayoutEffect(() => {
+    function updatePosition() {
+      if (folio.current && about.current && header.current && contact.current) {
+        if (about && window.pageYOffset < about.current.offsetTop) {
+          setCurrent("Header");
+        }
+        if (
+          window.pageYOffset <= folio.current.offsetTop &&
+          window.pageYOffset > about.current.offsetTop * 0.9
+        ) {
+          setCurrent("About");
+        }
+        if (
+          window.pageYOffset <= team.current.offsetTop &&
+          window.pageYOffset > folio.current.offsetTop * 0.9
+        ) {
+          setCurrent("Projects");
+        }
+        if (
+          window.pageYOffset <= contact.current.offsetTop &&
+          window.pageYOffset > team.current.offsetTop * 0.9
+        ) {
+          setCurrent("Our Team");
+        }
+        if (contact && window.pageYOffset > contact.current.offsetTop * 0.9) {
+          setCurrent("Find Us");
+        }
       }
     }
-  }
-
-  useLayoutEffect(() => {
     window.addEventListener("scroll", updatePosition);
     updatePosition();
-  }, []);
+  }, [about, header, folio, team, contact]);
 
   const handleClick = (e) => {
     setMenuOpen(e.currentTarget);
@@ -290,7 +285,6 @@ function NavBar(props) {
           </Button>
           <Hidden mdDown>
             <Button onClick={gotoContact} className={classes.button}>
-              {" "}
               <RoomIcon className={classes.icon} />
               Contacto
             </Button>
@@ -301,7 +295,7 @@ function NavBar(props) {
             {current}
           </Typography>
         </Toolbar>
-      </AppBar>{" "}
+      </AppBar>
     </Grid>
   );
 }
