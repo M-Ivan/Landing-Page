@@ -286,7 +286,7 @@ function NavBar(props) {
           <Hidden mdDown>
             <Button onClick={gotoContact} className={classes.button}>
               <RoomIcon className={classes.icon} />
-              Contacto
+              Contact
             </Button>
           </Hidden>
         </Toolbar>
